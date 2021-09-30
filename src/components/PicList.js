@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useParams, Link} from "react-router-dom";
+import Modal from "./Modal";
+import Header from './Header'
 
 const PicList = () => {
   const { albumId } = useParams();
@@ -22,13 +24,16 @@ const PicList = () => {
     }
 
     getPics();
-  }, [pics]);
+  }, []);
 
   return (
+    <>
+    <Header title="Photos in Album"/>
+
     <div className="wrapper wrapper-card">
       {pics.map((pic, index) => (
         <div key = {index} className="box card">
-          <a href={pic.url} target="_blank" ><img  className="card-img-top" src={pic.thumbnailUrl}/></a>
+          <Modal pic = {pic}/>
           <div className="card-body">
           <p className="card-title text-center">{pic.title}</p>
           </div>
@@ -36,6 +41,7 @@ const PicList = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

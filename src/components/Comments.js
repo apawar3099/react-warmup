@@ -22,7 +22,7 @@ const Comments = () => {
     }
 
     getComments();
-  }, [comments]);
+  }, []);
 
   return (
     <div className="list-group ">

@@ -1,12 +1,37 @@
-.App {
-  text-align: center;
-  padding: 10px 50px;
-  margin-bottom: 30px ;
+body{
+  margin:0;
 }
 
-.heading{
+
+.App {
+  text-align: center;
+  padding: 15px 50px;
+  margin-bottom:0px;
+  
+}
+
+.header {
+  text-align: center;
+  background-color: dodgerblue;
+  padding: 15px 50px;
+  margin-top: 0px;
+  margin-bottom: 30px ;
+  color:floralwhite;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.heading-home{
   color:floralwhite;
   font-size: 20px;
+  position: absolute;
+  left: 12px;
+  
+}
+.heading-title{
+  color:floralwhite;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .App-logo {
@@ -44,29 +69,31 @@
   }
 }
 
-body {
-  margin:  auto 100px;
-}
+
 
 .wrapper {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 23% 23% 23% 23%;
   grid-gap: 20px;
   background-color: #fff;
   color: #444;
+  padding: 0px 20px;
+  justify-content: space-between;
 }
 
 .box {
-  background-color:mintcream;
-  color: darkslategray;
+  background-color:rgb(222, 251, 253);
+  color: rgb(59, 92, 92);
   border-radius: 15px;
   padding: 20px;
   font-size: 150%;
 }
 
 .wrapper-card {
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: 18% 18% 18% 18% 18% ;
   grid-gap: 15px;
+  padding: 0px 20px;
+  justify-content: space-between;
 }
 
 a {
@@ -83,3 +110,7 @@ a {
   height: 300px;
 }
 
+.thumb-img {
+  height: 150px;
+  width: 150px;
+}

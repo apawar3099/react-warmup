@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Error404 from "./Error404"
 import Button from "./Button"
 import PostsList from './PostsList';
+import Header from './Header'
 
 
 
@@ -31,13 +32,16 @@ const UserPosts = ({usersData}) => {
 
 		getUserPosts();
 
-	},[userPosts])
+	},[])
     
     return (
+        <>
+        <Header title={`Posts by: @${user.username}`}/>
+
         <div>
-            <h2>Posts by: @{user.username}</h2>
             <PostsList posts={userPosts}/>
         </div>
+        </>
     )
 }
 

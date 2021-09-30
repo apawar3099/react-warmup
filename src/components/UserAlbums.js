@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Error404 from "./Error404";
 import Button from "./Button";
 import PostsList from "./PostsList";
+import Header from './Header'
 
 const UserAlbums = ({usersData}) => {
   const { userId } = useParams();
@@ -26,11 +27,12 @@ const UserAlbums = ({usersData}) => {
     }
 
     getUserAlbums();
-  }, [userAlbums]);
+  }, []);
 
   return (
 	<div>
-	<h2>Albums by: @{user.username}</h2>
+  <Header title={`Album by: @${user.username}`}/>
+	
     <ol className="list-group list-group-numbered ">
       
       {userAlbums.map((album, index) => (

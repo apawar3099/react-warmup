@@ -9,7 +9,7 @@ import "./App.css";
 import jsonuserdata from "./jsonuserdata.json";
 import PostPage from "./components/PostPage";
 import PicList from "./components/PicList";
-
+import { getAllUsers } from "./service/fetchUser";
 
 // function getUsersData(){
 // return fetch('https://jsonplaceholder.typicode.com/users')
@@ -30,10 +30,10 @@ function App() {
 
 		async function getData() {
 			try {
-			var resUsers = await fetch(urlUsers) ;
+			// var resUsers = await fetch(urlUsers) ;
 			var resPosts = await fetch(urlPosts) ;
 
-			var jsonUsers = await resUsers.json();
+			var jsonUsers = await getAllUsers();
 			var jsonPosts = await resPosts.json();
 
 			console.log("users" + jsonUsers);
@@ -55,7 +55,8 @@ function App() {
   return (
     <>
       	<div className="App bg-dark">
-        	<a  href="/"><h2 className= "heading" >HOME</h2></a>
+        	<a  href="/"><h2 className= "heading-home" >Home</h2></a>
+			<h1 className= "heading-title">ReactJS Warmup</h1>
       	</div>
 
 		<Router>

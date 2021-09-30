@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import Button from "./Button"
-
+import Header from './Header';
 
 
 const UsersList = ({usersData}) => {
     console.log(usersData)
     
     return (
+        <>
+        <Header title="List of Users"/>
         <div className= "wrapper">
             
             {usersData.map((user, index) =>{
@@ -23,6 +25,7 @@ const UsersList = ({usersData}) => {
                 </div>
             )} )}
         </div>
+        </>
     )
 }
 

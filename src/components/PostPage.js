@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import Comments from "./Comments";
 import Error404 from "./Error404"
 
+import Header from './Header'
+
 const PostPage = ({posts,usersData}) => {
     const {postId} = useParams()
 
@@ -14,6 +16,9 @@ const PostPage = ({posts,usersData}) => {
     if(!post) return <Error404 />
 
     return (
+        <>
+        <Header title="Post Page"/>
+
         <div>
             <div className="post text-center card">
                 <h3 className="card-header">{post.title}</h3>
@@ -25,11 +30,12 @@ const PostPage = ({posts,usersData}) => {
             </div>
             <hr></hr>
             <div>
-                <h4 style={{color:"red"}} className="mb-3" >Comments :</h4>
+                <h4 style={{color:"red"}} className="mb-3 text-center" >Comments</h4>
                 <Comments postId = {postId}/>
             </div>
             
         </div>
+        </>
     )
 }
 
