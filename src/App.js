@@ -10,6 +10,9 @@ import jsonuserdata from "./jsonuserdata.json";
 import PostPage from "./components/PostPage";
 import PicList from "./components/PicList";
 import { getAllUsers } from "./service/fetchUser";
+import {HeaderContext} from "./helpers/HeaderContext"
+import Header from "./components/Header";
+
 
 // function getUsersData(){
 // return fetch('https://jsonplaceholder.typicode.com/users')
@@ -22,6 +25,7 @@ function App() {
 	
 	const [usersData, setUsersData] = useState([]);
 	const [postsData, setPostsData] = useState([]);
+	const [headTitle, setHeadTitle] = useState("");
 
 	useEffect(() => {
 
@@ -58,16 +62,18 @@ function App() {
         	<a  href="/"><h2 className= "heading-home" >Home</h2></a>
 			<h1 className= "heading-title">ReactJS Warmup</h1>
       	</div>
+		<Header title={headTitle}/>
 
 		<Router>
-			<Route exact path="/" component={Homepage}></Route>
-			<Route path="/users" ><UsersList usersData= {usersData} /></Route>
-			<Route path="/user/:id" ><User usersData= {usersData} /></Route>
-			<Route path="/posts/:userId" ><UserPosts usersData= {usersData}/></Route>
-			<Route path="/albums/:userId" ><UserAlbums usersData= {usersData} /></Route>
-			<Route path="/post/:postId" ><PostPage posts = {postsData} usersData = {usersData}/></Route>
-			<Route path="/album/:albumId" ><PicList /></Route>
-
+			<HeaderContext.Provider value={{headTitle, setHeadTitle}}>
+				<Route exact path="/" component={Homepage}></Route>
+				<Route path="/users" ><UsersList usersData= {usersData} /></Route>
+				<Route path="/user/:id" ><User usersData= {usersData} /></Route>
+				<Route path="/posts/:userId" ><UserPosts usersData= {usersData}/></Route>
+				<Route path="/albums/:userId" ><UserAlbums usersData= {usersData} /></Route>
+				<Route path="/post/:postId" ><PostPage posts = {postsData} usersData = {usersData}/></Route>
+				<Route path="/album/:albumId" ><PicList /></Route>
+			</HeaderContext.Provider>
 
 		</Router>
     	

@@ -2,14 +2,18 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import Button from "./Button"
 import Header from './Header';
-
+import { useContext } from 'react'
+import { HeaderContext } from '../helpers/HeaderContext'
 
 const UsersList = ({usersData}) => {
-    console.log(usersData)
-    
+    // console.log(usersData)
+    const {setHeadTitle} = useContext(HeaderContext)
+
     return (
         <>
-        <Header title="List of Users"/>
+        {/* <Header title="List of Users"/> */}
+        {setHeadTitle("List of Users")}
+
         <div className= "wrapper">
             
             {usersData.map((user, index) =>{

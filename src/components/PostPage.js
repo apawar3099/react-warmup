@@ -5,9 +5,12 @@ import Comments from "./Comments";
 import Error404 from "./Error404"
 
 import Header from './Header'
+import { useContext } from 'react'
+import { HeaderContext } from '../helpers/HeaderContext'
 
 const PostPage = ({posts,usersData}) => {
     const {postId} = useParams()
+    const {setHeadTitle} = useContext(HeaderContext)
 
     const post = posts.find((post) => post.id== postId)
     // console.log(post)
@@ -17,7 +20,8 @@ const PostPage = ({posts,usersData}) => {
 
     return (
         <>
-        <Header title="Post Page"/>
+        {/* <Header title="Post Page"/> */}
+        {setHeadTitle("Post Page")}
 
         <div>
             <div className="post text-center card">

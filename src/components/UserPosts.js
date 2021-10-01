@@ -4,13 +4,15 @@ import Error404 from "./Error404"
 import Button from "./Button"
 import PostsList from './PostsList';
 import Header from './Header'
-
+import { useContext } from 'react'
+import { HeaderContext } from '../helpers/HeaderContext'
 
 
 const UserPosts = ({usersData}) => {
 
     const {userId} = useParams();
     const [userPosts, setUserPosts] = useState([]);
+    const {setHeadTitle} = useContext(HeaderContext)
 
     const user = usersData.find((user) => (user.id == userId))
     // console.log("user"+user);
@@ -36,7 +38,8 @@ const UserPosts = ({usersData}) => {
     
     return (
         <>
-        <Header title={`Posts by: @${user.username}`}/>
+        {/* <Header title={`Posts by: @${user.username}`}/> */}
+        {setHeadTitle(`Posts by: @${user.username}`)}
 
         <div>
             <PostsList posts={userPosts}/>

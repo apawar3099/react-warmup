@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import { useParams, Link} from "react-router-dom";
 import Modal from "./Modal";
-import Header from './Header'
+import { useContext } from 'react'
+import { HeaderContext } from '../helpers/HeaderContext'
 
 const PicList = () => {
   const { albumId } = useParams();
   const [pics, setPics] = useState([]);
+  const {setHeadTitle} = useContext(HeaderContext)
 
   useEffect(() => {
     const url = `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`;
@@ -28,7 +30,8 @@ const PicList = () => {
 
   return (
     <>
-    <Header title="Photos in Album"/>
+    {/* <Header title="Photos in Album"/> */}
+    {setHeadTitle("Photos in Album")}
 
     <div className="wrapper wrapper-card">
       {pics.map((pic, index) => (

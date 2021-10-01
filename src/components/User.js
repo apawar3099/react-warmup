@@ -5,12 +5,14 @@ import Error404 from "./Error404"
 import Button from "./Button"
 import Header from './Header'
 import { getUsersById } from "../service/fetchUser";
-
+import { useContext } from 'react'
+import { HeaderContext } from '../helpers/HeaderContext'
 
 const User = ({usersData}) => {
     
     const [singleUser, setSingleUser] = useState({});
     const {id} = useParams();
+    const {setHeadTitle} = useContext(HeaderContext)
 
     useEffect(() => {
         async function fetchuser() {
@@ -28,7 +30,8 @@ const User = ({usersData}) => {
 
     return (
         <>
-        <Header title="User Page"/>
+        {/* <Header title="User Page"/> */}
+        {setHeadTitle("User Page")}
 
         <div className="text-center">
             <h3>@{singleUser.username}</h3>
