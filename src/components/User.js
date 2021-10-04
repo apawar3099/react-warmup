@@ -4,11 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import Error404 from "./Error404"
 import Button from "./Button"
 import Header from './Header'
-import { getUsersById } from "../service/fetchUser";
+import { getUsersById } from "../service/fetchData";
 import { useContext } from 'react'
 import { HeaderContext } from '../helpers/HeaderContext'
 
-const User = ({usersData}) => {
+const User = () => {
     
     const [singleUser, setSingleUser] = useState({});
     const {id} = useParams();

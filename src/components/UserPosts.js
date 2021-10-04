@@ -6,33 +6,39 @@ import PostsList from './PostsList';
 import Header from './Header'
 import { useContext } from 'react'
 import { HeaderContext } from '../helpers/HeaderContext'
+import { getUsersById } from "../service/fetchData";
 
 
-const UserPosts = ({usersData}) => {
+const UserPosts = () => {
 
     const {userId} = useParams();
     const [userPosts, setUserPosts] = useState([]);
     const {setHeadTitle} = useContext(HeaderContext)
+    const [user, setUser] = useState({})
 
-    const user = usersData.find((user) => (user.id == userId))
+    // const user = usersData.find((user) => (user.id == userId))
     // console.log("user"+user);
+    
 	useEffect(() => {
 
 		const url = `https://jsonplaceholder.typicode.com/users/${userId}/posts`;
-		async function getUserPosts() {
+		async function getUserPostsAndUser() {
 			try {
 			var response = await fetch(url) ;
 			var json = await response.json();
 			console.log("userposts" + json);
-        
 			setUserPosts(json)
+            
+            const user = await getUsersById(userId)
+            setUser(user)
+
 			}
             catch (error) {
                 console.log("error", error);
             }
 		};
 
-		getUserPosts();
+		getUserPostsAndUser();
 
 	},[])
     

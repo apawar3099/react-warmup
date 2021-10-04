@@ -6,10 +6,9 @@ import User from './components/User'
 import UserPosts from "./components/UserPosts"
 import UserAlbums from "./components/UserAlbums"
 import "./App.css";
-import jsonuserdata from "./jsonuserdata.json";
 import PostPage from "./components/PostPage";
 import PicList from "./components/PicList";
-import { getAllUsers } from "./service/fetchUser";
+import { getAllUsers } from "./service/fetchData";
 import {HeaderContext} from "./helpers/HeaderContext"
 import Header from "./components/Header";
 
@@ -24,27 +23,16 @@ import Header from "./components/Header";
 function App() {
 	
 	const [usersData, setUsersData] = useState([]);
-	const [postsData, setPostsData] = useState([]);
 	const [headTitle, setHeadTitle] = useState("");
 
 	useEffect(() => {
 
-		const urlUsers = "https://jsonplaceholder.typicode.com/users";
-		const urlPosts = "https://jsonplaceholder.typicode.com/posts";
-
 		async function getData() {
 			try {
-			// var resUsers = await fetch(urlUsers) ;
-			var resPosts = await fetch(urlPosts) ;
 
 			var jsonUsers = await getAllUsers();
-			var jsonPosts = await resPosts.json();
-
 			console.log("users" + jsonUsers);
 			setUsersData(jsonUsers)
-
-			console.log("posts" + jsonPosts);
-			setPostsData(jsonPosts)
 
 			}catch (error) {
                 console.log("error", error);
@@ -68,10 +56,10 @@ function App() {
 			<HeaderContext.Provider value={{headTitle, setHeadTitle}}>
 				<Route exact path="/" component={Homepage}></Route>
 				<Route path="/users" ><UsersList usersData= {usersData} /></Route>
-				<Route path="/user/:id" ><User usersData= {usersData} /></Route>
-				<Route path="/posts/:userId" ><UserPosts usersData= {usersData}/></Route>
-				<Route path="/albums/:userId" ><UserAlbums usersData= {usersData} /></Route>
-				<Route path="/post/:postId" ><PostPage posts = {postsData} usersData = {usersData}/></Route>
+				<Route path="/user/:id" ><User /></Route>
+				<Route path="/posts/:userId" ><UserPosts /></Route>
+				<Route path="/albums/:userId" ><UserAlbums  /></Route>
+				<Route path="/post/:postId" ><PostPage /></Route>
 				<Route path="/album/:albumId" ><PicList /></Route>
 			</HeaderContext.Provider>
 

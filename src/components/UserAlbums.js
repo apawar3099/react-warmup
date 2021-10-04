@@ -6,30 +6,35 @@ import PostsList from "./PostsList";
 import Header from './Header'
 import { useContext } from 'react'
 import { HeaderContext } from '../helpers/HeaderContext'
+import { getUsersById } from "../service/fetchData";
 
-const UserAlbums = ({usersData}) => {
+const UserAlbums = () => {
   const { userId } = useParams();
   const [userAlbums, setUserAlbums] = useState([]);
   const {setHeadTitle} = useContext(HeaderContext)
+  const [user, setUser] = useState({})
 
-  const user = usersData.find((user) => (user.id == userId))
+  // const user = usersData.find((user) => (user.id == userId))
+
 //   console.log("user"+user);
 
   useEffect(() => {
     const url = `https://jsonplaceholder.typicode.com/users/${userId}/albums`;
-    async function getUserAlbums() {
+    async function getUserAlbumsAndUser() {
       try {
         var response = await fetch(url);
         var json = await response.json();
         console.log("useralbums" + json);
-
         setUserAlbums(json);
+
+        const user = await getUsersById(userId)
+        setUser(user)
       } catch (error) {
         console.log("error", error);
       }
     }
 
-    getUserAlbums();
+    getUserAlbumsAndUser();
   }, []);
 
   return (

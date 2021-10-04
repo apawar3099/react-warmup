@@ -3,19 +3,40 @@ import React, {useEffect, useState} from "react";
 import { Link, useParams } from "react-router-dom";
 import Comments from "./Comments";
 import Error404 from "./Error404"
-
 import Header from './Header'
 import { useContext } from 'react'
 import { HeaderContext } from '../helpers/HeaderContext'
+import { getAllPosts, getAllUsers, getPostsById, getUsersById } from "../service/fetchData";
 
-const PostPage = ({posts,usersData}) => {
+
+const PostPage = () => {
     const {postId} = useParams()
     const {setHeadTitle} = useContext(HeaderContext)
 
-    const post = posts.find((post) => post.id== postId)
+    const [post, setPost] = useState({})
+    const [user, setUser] = useState({})
+    // const post = posts.find((post) => post.id== postId)
     // console.log(post)
-    
-    const user = usersData.find((user) => (user.id == post.userId))
+    // const user = usersData.find((user) => (user.id == post.userId))
+
+
+    useEffect(()=> {
+
+        async function getDataFunc(postId){
+            try {
+            var post = await getPostsById(postId)
+            var user = await getUsersById(post.userId)
+            setPost(post)
+            setUser(user)
+            } catch (error) {
+                
+            }
+        }
+        
+        getDataFunc(postId)
+
+    },[])
+
     if(!post) return <Error404 />
 
     return (
